@@ -1,11 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showdata</title>
-    <link rel="stylesheet" href="<?=base_url();?>public/css/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Table wrapper */
+        .table-wrapper {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Title */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #222;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* Table */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table header */
+        .styled-table thead tr {
+            background: linear-gradient(135deg, #185a9d, #43cea2);
+            color: #fff;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Zebra rows */
+        .styled-table tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        /* Hover effect */
+        .styled-table tbody tr:hover {
+            background: #f1f1f1;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #fff;
+            margin: 0 4px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        /* Update button (yellow) */
+        .btn-update {
+            background: #f1c40f;
+        }
+
+        .btn-update:hover {
+            background: #d4ac0d;
+        }
+
+        /* Delete button (red) */
+        .btn-delete {
+            background: #e74c3c;
+        }
+
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+
+        /* Create link */
+        .create-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #185a9d;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .create-link:hover {
+            color: #43cea2;
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
     <div class="table-wrapper">
         <h1>Welcome to Showdata View</h1>
@@ -21,22 +134,23 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach(html_escape($students) as $student): ?>
-                <tr>
-                    <td><?=$student['id'];?></td>
-                    <td><?=$student['last_name'];?></td>
-                    <td><?=$student['first_name'];?></td>
-                    <td><?=$student['email'];?></td>
-                    <td><?=$student['Role'];?></td>
-                    <td>
-                        <a href="<?=site_url('user/update/'.$student['id']);?>" class="btn btn-update">Update</a>
-                        <a href="<?=site_url('user/soft-delete/'.$student['id']);?>" class="btn btn-delete">Delete</a>
-                    </td>
-                </tr>
+                <?php foreach (html_escape($students) as $student): ?>
+                    <tr>
+                        <td><?= $student['id']; ?></td>
+                        <td><?= $student['last_name']; ?></td>
+                        <td><?= $student['first_name']; ?></td>
+                        <td><?= $student['email']; ?></td>
+                        <td><?= $student['Role']; ?></td>
+                        <td>
+                            <a href="<?= site_url('user/update/' . $student['id']); ?>" class="btn btn-update">Update</a>
+                            <a href="<?= site_url('user/soft-delete/' . $student['id']); ?>" class="btn btn-delete">Delete</a>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a href="<?=site_url('user/create');?>" class="create-link">Create Record</a>
+        <a href="<?= site_url('user/create'); ?>" class="create-link">Create Record</a>
     </div>
 </body>
+
 </html>
